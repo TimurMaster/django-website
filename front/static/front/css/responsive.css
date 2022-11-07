@@ -1,0 +1,200 @@
+@media all and (max-width:1200px){
+}
+
+@media all and (max-width:992px){
+}
+
+@media all and (max-width:768px){
+    header{
+        display: none;
+    }
+    body{
+        padding-top: 60px;
+    }
+    .mob-header{
+        display: block;
+    }
+    .nonclick{
+        pointer-events: all;
+    }
+    .main-inner .item {
+        grid-template-columns: 1fr;
+    }
+    .main-inner .item .title {
+        font-size: 22px;
+    }
+    .main-inner .item img {
+        display: none;
+    }
+    #main{
+        min-height: 400px;
+    }
+    .main-inner{
+        height: 400px;
+    }
+    #main::after {
+        clip-path: polygon(100% 50%, 100% 50%, 100% 100%, 20% 100%);
+    }
+    .catalog-block-div {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+    .catalog-block-item p {
+        font-size: 16px;
+        line-height: 110%;
+    }
+    .catalog-block-item img {
+        width: 60px;
+    }
+    .catalog-block-item {
+        grid-template-columns: 1fr 60px;
+    }
+    .about-item {
+        height: 250px;
+    }
+    .clients-div {
+        grid-template-columns: 1fr;
+    }
+    .projects-div {
+        grid-template-columns: 1fr;
+    }
+    .projects-div .item.overlay .info{
+        transform: translateY(0%);
+    }
+    .projects-div .item.overlay .over-img {
+        transform: translateY(100%);
+    }
+    .projects-div .item {
+        height: auto;
+    }
+    .news-div {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+    .news-item:nth-child(6n + 2) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .pag-div {
+        right: 0px;
+    }
+    .banner-def {
+        min-height: auto;
+    }
+    .banner-def-inner {
+        padding: 70px 0px 20px;
+    }
+    .news-page-item-div .img-div {
+        height: auto;
+        display: block;
+        padding: 0px;
+    }
+    .news-page-item-div .img-div img {
+        position: relative;
+        top: unset;
+        left: unset;
+        margin-bottom: 20px;
+    }
+    .news-page-item-div .img-div::after{
+        display: none;
+    }
+    .news-page-item-div .img-div .info .title {
+        font-size: 18px;
+        color: #000;
+    }
+    .catalog-item-table {
+        margin-top: 30px;
+    }
+    .catalog-item h2{
+            font-size: 26px;
+    }
+    .m-menu a {
+        font-size: 16px;
+    }
+    .m-menu li {
+        margin-bottom: 10px;
+    }
+    .mob-txt {
+        font-size: 12px;
+    }
+    .logo-mob {
+        width: 100px;
+    }
+    .sidebar {
+        margin-bottom: 20px;
+    }
+    .sidebar-ul li {
+        margin-bottom: 10px;
+    }
+    .footer-logo {
+        margin-bottom: 30px;
+    }
+    .projects-div.page {
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+    }
+    .info-item{
+        margin-bottom: 20px;
+    }
+    .info-devider{
+        display: none;
+    }
+}
+
+
+@media all and (max-width:420px){
+}
+
+
+@media all and (max-width:370px){
+    .main-inner .item .title {
+        font-size: 18px;
+    }
+    .catalog-block-div {
+        grid-template-columns: 1fr;
+    }
+    h2 {
+        font-size: 26px;
+    }
+    p {
+        font-size: 14px;
+    }
+    .clients-div .title {
+        font-size: 22px;
+    }
+    .client-item {
+        height: 60px;
+    }
+    .projects-div .item.overlay .info p {
+        font-size: 12px;
+    }
+    .projects-div .item.static p {
+        font-size: 16px;
+    }
+    .projects-div .item.static p {
+        font-size: 16px;
+        line-height: 149.8%;
+        color: #FFFFFF;
+    }
+    .news-div {
+        grid-template-columns: 1fr;
+    }
+    .news-item:nth-child(6n + 1) {
+        grid-column-start: 1;
+        grid-column-end: 1;
+    }
+    .news-item:nth-child(6n + 2) {
+        grid-column-start: 1;
+        grid-column-end: 1;
+    }
+    .news-item:nth-child(6n + 1) .img-div .info .title, .news-item:nth-child(6n + 2) .img-div .info .title {
+        font-size: 16px;
+    }
+    .news-item:nth-child(6n + 1) .img-div, .news-item:nth-child(6n + 2) .img-div {
+        padding: 10px;
+    }
+}
+
+
+@media all and (max-width:320px){
+}
