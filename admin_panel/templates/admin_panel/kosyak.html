@@ -1,0 +1,5 @@
+<form action="{% url 'sos' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="sos" value="5">
+    <button type="submit">REFUSE!!!!</button>
+</form>

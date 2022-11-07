@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Users List - Frest - Bootstrap HTML admin template</title>
+
+    {% block cssLoader %}
+    {% include 'admin_panel/cssLoader.html' %}
+    {% endblock cssLoader %}
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern semi-dark-layout 2-columns  navbar-sticky footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="semi-dark-layout">
+
+    <!-- BEGIN: Header-->
+    {% block content %}
+    {% include 'admin_panel/headerFORM.html' %}
+    {% endblock %}
+    <!-- END: Header-->
+
+
+        <!-- BEGIN: Main Menu-->
+    {% block menu %}
+    {% include 'admin_panel/mainMenuFORM.html' %}
+    {% endblock menu %}
+   <!-- END: Main Menu-->
+
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Изменить категорию</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form form-horizontal form repeater-default" action="{% url 'category-edit' category.pk %}" method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                {{ error }}
+                                              <input type="hidden" name="form" value="edit">
+
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Название</label>
+                                                    </div>
+                                                    <div class="col-md-8 form-group">
+                                                        <input type="text" id="first-name" class="form-control" name="name" value="{{ category.name }}">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Изображение</label>
+                                                    </div>
+                                                    <div class="col-md-8 form-group">
+                                                        <input type="file" id="photo" class="form-control" name="img" value="{{ category.img }}">
+                                                    </div>
+                                                    {% if category.parent %}
+                                                    <div class="col-md-4">
+                                                        <label>Родительская категория </label>
+                                                    </div>
+                                                    <div class="col-md-8 form-group">
+                                                            <select class="form-control" id="accountSelect"  name="parent_id" >
+                                                                 <option value="{{category.parent.pk}}" >
+                                                                    Текущий: {{category.parent}}
+                                                                </option>
+                                                        {% for category in parents %}
+                                                            <option value="{{ category.pk }}">
+                                                                {{ category.name }}
+                                                            </option>
+
+                                                        {% endfor %}
+                                                            </select>
+                                                    </div>
+                                                        {% else  %}
+                                                        <input type="hidden" name="parent_id" value="0">
+                                                     {% endif %}
+                                                    <hr>
+                                                      <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
+                                                        <button type="submit" class="btn btn-primary glow mr-sm-1 mb-1">Сохранить</button>
+                                                        <a href="{% url 'category' %}" class="btn btn-light mr-sm-1  mb-1">Закрыть</a>
+                                                       <button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#deleteForm"> Удалить категорию</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form action="{% url 'category-edit' category.pk %}" method="POST" name="delete-cat" id="delete-cat">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="form" value="delete">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+<div class="modal text-left" id="deleteForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+
+              <div class="modal-body">
+                  <div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"><span class="swal2-icon-text">!</span></div>
+                  <h4 class="modal-title text-center" >Вы действительно хотите удалить катагоерию?</h4>
+                  <p class="text text-center">Данное действие невозможно отменить.</p>
+              <div class="mt-2 d-flex flex-sm-row flex-column justify-content-center">
+                <a type="reset" class="btn btn-light mb-1 mr-sm-1 text-white" data-dismiss="modal" aria-label="Close">Закрыть</a>
+                  <input type="submit" class="btn btn-danger mb-1" form="delete-cat" value="Удалить категорию">
+            </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+
+
+
+    <!-- BEGIN: Footer-->
+   {% block footer %}
+    {% include 'admin_panel/footerFORM.html' %}
+    {% endblock footer %}
+    <!-- END: Footer-->
+
+
+
+    {% block jsLoader %}
+    {% include 'admin_panel/jsLoader.html' %}
+    {% endblock jsLoader %}
+
+</body>
+<!-- END: Body-->
+
+</html>

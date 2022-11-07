@@ -1,0 +1,51 @@
+   {% block menu %}
+   {% load static %}
+<!-- BEGIN: Main Menu-->
+    <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="{% url 'panel' %}">
+                        <div class="brand-logo"><img class="logo" src="{% static 'admin_panel/app-assets/images/logo/logo.png' %}" /></div>
+                        <h2 class="brand-text mb-0">FACTUM</h2>
+                    </a></li>
+                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
+            </ul>
+        </div>
+        <div class="shadow-bottom"></div>
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
+
+
+                <li class="active nav-item"><a href="{% url 'panel' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Главная</span></a>
+                </li>
+                <li class="nav-item"><a href="{% url 'tovars' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Список Товаров</span></a>
+                </li>
+                <li class="nav-item"><a href="{% url 'tovars-add' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Добавить Товар</span></a>
+                </li>
+                <li class="nav-item"><a href="{% url 'category' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Категории</span></a>
+                </li>
+                 <li class=" navigation-header"><span>Страницы</span>
+                    </li>
+                    <li class="nav-item"><a href="#"><i class="menu" data-icon="users"></i><span class="menu-title" data-i18n="User">Новости</span></a>
+                    <ul class="menu-content">
+                    <li><a href="{% url 'admin-news' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="List">Список новостей</span></a>
+                    <li><a href="{% url 'news-add' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="List">Добавить новость</span></a>
+                    </ul>
+                 </li>
+                <li class="nav-item"><a href="{% url 'admin-contacts' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Контакты</span></a>
+                  </li>
+                <li class="nav-item"><a href="{% url 'admin-partners' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Партнеры</span></a>
+                  </li>
+                <li class="nav-item"><a href="{% url 'admin-clients' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Клиенты</span></a>
+                  </li>
+                <li class="nav-item"><a href="{% url 'admin-projects' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Проекты</span></a>
+                  </li>
+                <li class="nav-item"><a href="{% url 'header' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">header-info</span></a>
+                  </li>
+            </ul>
+
+
+        </div>
+    </div>
+    <!-- END: Main Menu-->
+   {% endblock %}
