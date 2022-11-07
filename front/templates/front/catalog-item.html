@@ -1,0 +1,131 @@
+{% load static %}
+{% block header %}
+{% include 'front/includes/header.html' %}
+{% endblock header %}
+    <title></title>
+</head>
+<body>
+{% block modal %}
+{% include 'front/includes/modal.html' %}
+{% endblock modal %}
+{% block menu %}
+{% include 'front/includes/menu.html' %}
+{% endblock menu %}
+
+<section class="mt-md-0 mt-5">
+    <div class="banner-def">
+        <div class="banner-def-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-12 d-grid">
+                        <h2>{{category}}</h2>
+                        <div class="button" data-toggle="modal" data-target="#cta-modal">Оставить заявку</div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <img src="/media/{% for categor in categories %}{% if category.parent  == categor %}{{ categor.img }}{% endif %}{% endfor %}" class="w-100" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-12">
+                <div class="sidebar">
+                    <p class="title">Каталог товаров</p>
+
+                    <div class="accordion" id="accordionExample">
+                        {% for category in categories %}
+                        <div class="acc-card">
+                            <div class="acc-header" id="heading1">
+                                <p class="collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ category.pk }}" aria-expanded="false" aria-controls="collapse{{ category.pk }}">
+                                    {{ category.name }}
+                                    <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 3.93403e-07L8.39712 6.75L0.602885 6.75L4.5 3.93403e-07Z" fill="black"/>
+                                    </svg>
+                                </p>
+
+                            </div>
+
+                            <div id="collapse{{category.pk}}" class="acc-body collapse" aria-labelledby="heading1" data-parent="#accordionExample">
+                                <div class="acc-body-inner">
+                                    <ul class="sidebar-ul">
+                                        {% for child in category.childs.all %}
+                                        <li><a href="{% url 'Catalog-item' child.pk %}">{{ child.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-12">
+            <?php include "blocks/breadcrumbs-block.php" ?>
+                <h2>{{ category.name }}{% if category.parent %} {{category.parent}}{% endif %} </h2>
+                <p>{{category.description}}</p>
+                <hr>
+                <div class="catalog-list">
+                    {% for tovar in tovars %}
+                        {% if tovar.categories.get.category  == category %}
+                    <div class="catalog-item">
+                        <div class="row">
+                            <div class="col-md-10 col-12">
+                                <h2>{{ tovar.name }}</h2>
+
+                                <p>{{tovar.description}}</p>
+                                   <p>{% for char in tovar.char.all %}
+                                  <br> <b>{{char.key}}: </b> {{ char.value }}
+                                    {% endfor %}</p>
+
+                                                            {% for img in tovar_images %}
+                                    {% if img.tovar == tovar %}
+                                       <img src="/media/{{ img.img }}" class="w-md-100 w-auto mt-4" width="300px" height="300px" alt="">
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <br>
+                            <div class="button" data-toggle="modal" data-target="#cta-modal{{ tovar.pk }}">Купить</div>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% for tovar_mod in tovars %}
+<div class="modal fade" id="cta-modal{{ tovar_mod.pk }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <img src="{% static 'front/img/icons/close.svg' %}" alt="">
+            </button>
+
+            <div class="modal-body">
+                <h2 class="text-center">Оставить заявку </h2>
+                <form action="https://renkaz.kz/bitrix24/tobitrix24.php" method="POST" class="main-modal">
+                    {% csrf_token %}
+                    <input type="text" required="" name="name" placeholder="Имя">
+                    <input type="hidden" name="tovar_id" value="{{ tovar_mod.pk }}">
+                    <input type="text" required="" class="phone" name="phone" placeholder="Телефон">
+                    <input type="email" name="email" placeholder="E-mail">
+                    <button type="submit" class="button m-auto">Отправить</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% block footer %}
+    {% include 'front/includes/footer.html' %}
+{% endblock footer %}

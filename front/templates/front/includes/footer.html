@@ -1,0 +1,134 @@
+{% block footer %}
+{% load static %}
+<div id="map_container" class="map container-fluid">
+    <script id="ymap_lazy"
+        async
+        data-src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A38903f7847283f84a21de19f87e7931e5b5b0757b0a1b4077d72e5de72957371&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-12">
+                <a href="/">
+                    <img src="{%  static 'front/img/logo-white.svg' %}" class="footer-logo" alt="">
+                </a>
+            </div>
+            <div class="col-md-2 col-12">
+                <ul class="footer-ul">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="{% url 'Catalog' %}">Каталог товаров</a></li>
+                    <li><a href="{% url 'about' %}">О компании</a></li>
+                    <li><a href="{% url 'service' %}">Услуги</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-12">
+                <ul class="footer-ul">
+                    <li><a href="{% url 'news' %}">Новости</a></li>
+                    <li><a href="{% url 'FrontPage' %}#partners">Партнеры</a></li>
+                    <li><a href="{% url 'projects' %}">Проекты</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-12">
+                <ul class="footer-ul">
+                    <li>
+                        <a>
+                        <span>Адрес:</span>
+                            {% for addres in address %}
+                                {{ addres.address }}
+                                <br>
+                            {% endfor %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:info@renkaz.kz">
+                        <span>Email:</span> {% for em in email %}
+                                  {{ em.email }}
+                            <br>
+                    {% endfor %}
+                        </a>
+                    </li>
+                    <li>
+                        <span>Соц сети:</span>
+                        <div class="soc-div">
+                            <a href="https://api.whatsapp.com/send?phone=77711596611&text=" target="_blank" class="soc-item">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.8538 0H10.8484C4.86535 0 0 4.8667 0 10.8511C0 13.2247 0.765 15.4248 2.06577 17.2111L0.713457 21.2423L4.88434 19.909C6.60016 21.0456 8.64694 21.7021 10.8538 21.7021C16.8368 21.7021 21.7021 16.8341 21.7021 10.8511C21.7021 4.86806 16.8368 0 10.8538 0ZM17.1677 15.3231C16.906 16.0623 15.867 16.6754 15.0382 16.8544C14.4712 16.9751 13.7307 17.0714 11.2376 16.0379C8.04878 14.7168 5.99521 11.4764 5.83516 11.2661C5.68189 11.0559 4.5466 9.55029 4.5466 7.99317C4.5466 6.43604 5.33737 5.67782 5.65612 5.35229C5.9179 5.08508 6.35058 4.96301 6.76564 4.96301C6.89992 4.96301 7.02064 4.96979 7.12915 4.97521C7.4479 4.98878 7.60795 5.00777 7.81819 5.51098C8.07997 6.1417 8.71747 7.69883 8.79343 7.85888C8.87074 8.01894 8.94806 8.23596 8.83955 8.4462C8.73782 8.66322 8.6483 8.75952 8.48824 8.94399C8.32819 9.12846 8.17628 9.26952 8.01622 9.46755C7.86973 9.63981 7.70426 9.82428 7.88872 10.143C8.07319 10.455 8.71069 11.4953 9.64931 12.3309C10.8606 13.4092 11.8426 13.7537 12.1939 13.9002C12.4557 14.0087 12.7676 13.983 12.9589 13.7795C13.2017 13.5177 13.5014 13.0837 13.8066 12.6564C14.0236 12.3499 14.2976 12.3119 14.5852 12.4204C14.8782 12.5221 16.4285 13.2885 16.7473 13.4472C17.066 13.6072 17.2762 13.6832 17.3536 13.8175C17.4295 13.9518 17.4295 14.5825 17.1677 15.3231Z" fill="#FFF"/>
+                                </svg>   
+                            </a>
+
+                            <a href="https://www.instagram.com/renkaz.kz/" target="_blank" class="soc-item">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.2181 0H7.07977C3.33479 0 0.297852 3.03694 0.297852 6.78191V14.9202C0.297852 18.6652 3.33479 21.7021 7.07977 21.7021H15.2181C18.963 21.7021 22 18.6652 22 14.9202V6.78191C22 3.03694 18.963 0 15.2181 0ZM19.9654 14.9202C19.9654 17.538 17.8359 19.6676 15.2181 19.6676H7.07977C4.46195 19.6676 2.33243 17.538 2.33243 14.9202V6.78191C2.33243 4.1641 4.46195 2.03457 7.07977 2.03457H15.2181C17.8359 2.03457 19.9654 4.1641 19.9654 6.78191V14.9202Z" fill="#FFF"/>
+                                    <path d="M11.1492 5.42554C8.15291 5.42554 5.72363 7.85482 5.72363 10.8511C5.72363 13.8473 8.15291 16.2766 11.1492 16.2766C14.1454 16.2766 16.5747 13.8473 16.5747 10.8511C16.5747 7.85482 14.1454 5.42554 11.1492 5.42554ZM11.1492 14.242C9.28007 14.242 7.75821 12.7202 7.75821 10.8511C7.75821 8.98062 9.28007 7.46011 11.1492 7.46011C13.0183 7.46011 14.5401 8.98062 14.5401 10.8511C14.5401 12.7202 13.0183 14.242 11.1492 14.242Z" fill="#FFF"/>
+                                    <path d="M16.9808 5.74162C17.38 5.74162 17.7037 5.41794 17.7037 5.01867C17.7037 4.61939 17.38 4.29572 16.9808 4.29572C16.5815 4.29572 16.2578 4.61939 16.2578 5.01867C16.2578 5.41794 16.5815 5.74162 16.9808 5.74162Z" fill="#FFF"/>
+                                </svg>                                            
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-12">
+                <ul class="footer-ul">
+                    <li>
+                        <a href="tel:8 771 159 66 11" class="nonclick">
+                        <span>Телефоны:</span>
+                            {% for ph in phone %}
+                                {{ph.phone}}<br>
+                            {% endfor %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="factum">
+            <a href="https://factum.agency/" target="_blank">
+                Сделано в <img src="{%  static 'front/img/factum.svg' %}" alt="">
+            </a>
+        </div>
+    </div>
+</footer>
+
+
+
+<script src="{% static 'front/js/jquery-3.2.1.slim.min.js' %}"></script>
+<script src="{% static 'front/js/popper.min.js' %}"></script>
+<script src="{% static 'front/js/bootstrap.min.js'%}"></script>
+<script src="{% static 'front/js/wow.min.js'%}"></script>
+<script src="{% static 'front/js/swiper.min.js'%}"></script>
+<script src="{% static 'front/js/main.js'%}"></script>
+<script src="{% static 'front/js/tilt.jquery.js'%}"></script>
+<script src="{% static 'front/js/jquery.fancybox.min.js'%}"></script>
+<script src="{% static 'front/js/maskedinput.js' %}"></script>
+
+<script>
+    $(".phone").mask("9(999) 999-9999");
+</script>
+<script>
+    let map_container = document.getElementById('map_container');
+    let options_map = {
+        once: true,//запуск один раз, и удаление наблюдателя сразу
+        passive: true,
+        capture: true
+    };
+    map_container.addEventListener('click', start_lazy_map, options_map);
+    map_container.addEventListener('touchstart', start_lazy_map, options_map);
+    map_container.addEventListener('touchmove', start_lazy_map, options_map);
+
+    let map_loaded = false;
+    function start_lazy_map() {
+        if (!map_loaded) {
+            let map_block = document.getElementById('ymap_lazy');
+            map_loaded = true;
+            map_block.setAttribute('src', map_block.getAttribute('data-src'));
+            map_block.removeAttribute('data_src');
+            map_container.classList.add("active");
+            console.log('YMAP LOADED');
+        }
+    }
+</script>
+</body>
+</html>
+{% endblock footer %}

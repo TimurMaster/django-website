@@ -1,0 +1,14 @@
+{% block clients %}
+<!-- Swiper -->
+<div class="swiper-container clients-swiper">
+    <div class="swiper-wrapper">
+        {% for client in clients %}
+        <div class="swiper-slide">
+            <img src="/media/{{ client.img }}" class="client-item" alt="">
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination swiper-pagination-clients"></div>
+</div>
+{% endblock clients %}

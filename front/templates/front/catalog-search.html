@@ -1,0 +1,34 @@
+{% load static %}
+{% block header %}
+{% include 'front/includes/header.html' %}
+{% endblock header %}
+    <title></title>
+</head>
+<body>
+{% block modal %}
+{% include 'front/includes/modal.html' %}
+{% endblock modal %}
+{% block menu %}
+{% include 'front/includes/menu.html' %}
+{% endblock menu %}
+
+
+<section>
+    <div class="container">
+        <h2>Каталог продукции</h2>
+        <div class="catalog-block-div">
+            {% for tovar in tovars %}
+                {% for tovar_cat in tovar.categories.all %}
+                    <a href="{% url 'Catalog-item' tovar_cat.category.pk  %}" class="catalog-block-item">
+                        <p>{{tovar.name}}</p>
+                    </a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+{% block footer %}
+    {% include 'front/includes/footer.html' %}
+{% endblock footer %}

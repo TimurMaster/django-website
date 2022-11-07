@@ -1,0 +1,74 @@
+{% load static %}
+{% block header %}
+{% include 'front/includes/header.html' %}
+{% endblock header %}
+    <title></title>
+</head>
+<body>
+{% block modal %}
+{% include 'front/includes/modal.html' %}
+{% endblock modal %}
+{% block menu %}
+{% include 'front/includes/menu.html' %}
+{% endblock menu %}
+
+
+<section class="mt-md-0 mt-5">
+    <div class="container">
+    <?php include "blocks/breadcrumbs-block.php" ?>
+    <h2>Проекты</h2>
+        <div class="projects-div page">
+            {% for project in page.object_list %}
+            <div class="item overlay">
+                {% for image in project_image %}
+                    {% if image.project == project %}
+                <img src="/media/{{ image.main }}" alt="">
+                <img src="/media/{{ image.img }}" class="over-img" alt="">
+                    {% endif %}
+                    {% endfor %}
+                <div class="info">
+                    <p>Поставка задвижек JAFAR диаметром 800мм, 600мм, 500мм, 300мм</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+           {% if is_paginated %}
+        <div class="page-pag-div">
+            <div class="page-pag">
+
+                <a href="{%if not prev_url %} {% endif %}{{ prev_url }}" class="arrow">
+                    <svg width="15" height="25" viewBox="0 0 7 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M-5.3662e-08 4.5L6.75 8.39711L6.75 0.602886L-5.3662e-08 4.5Z" fill="#F58634"/>
+                    </svg>                        
+                </a>
+                {% for n in page.paginator.page_range %}
+                        {% if page.number == n %}
+                <a href="?page={{ n }}" class="page-pag-item active">{{ n }}</a>
+                            {% elif n > page.number|add:-3 and n < page.number|add:3 %}
+                <a href="?page={{ n }}" class="page-pag-item">{{ n }} </a>
+                        {% endif %}
+                {% endfor %}
+
+                <a href="{%if not next_url %} {% endif %}{{ next_url }}" class="arrow">
+                    <svg width="15" height="25" viewBox="0 0 7 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 4.5L0.25 8.39711L0.25 0.602886L7 4.5Z" fill="#F58634"/>
+                    </svg>                                          
+                </a>
+            </div>
+        </div>
+    {% endif %}
+        
+    </div>
+</section>
+
+
+
+
+
+
+
+
+{% block footer %}
+    {% include 'front/includes/footer.html' %}
+{% endblock footer %}

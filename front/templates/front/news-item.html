@@ -1,0 +1,42 @@
+{% load static %}
+{% block header %}
+{% include 'front/includes/header.html' %}
+{% endblock header %}
+    <title></title>
+</head>
+<body>
+{% block modal %}
+{% include 'front/includes/modal.html' %}
+{% endblock modal %}
+{% block menu %}
+{% include 'front/includes/menu.html' %}
+{% endblock menu %}
+
+
+<section class="mt-md-0 mt-5">
+    <div class="container">
+        {% block bread %}
+           {% include 'front/blocks/breadcrumbs-block.html' %}
+        {% endblock %}
+        <h2>Новости</h2>
+        <div class="news-page-item-div">
+            <div class="img-div">
+                <img src="/media/{{ new.img }}" alt="">
+                <div class="info">
+                    <p class="title">{{ new.title }}</p>
+                    <p class="date">{{ new.date }}</p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-6 col-12">
+                    <p>{{ new.text }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% block footer %}
+    {% include 'front/includes/footer.html' %}
+{% endblock footer %}

@@ -1,0 +1,42 @@
+{% load static %}
+{% block header %}
+{% include 'front/includes/header.html' %}
+{% endblock header %}
+    <title></title>
+</head>
+<body>
+{% block modal %}
+{% include 'front/includes/modal.html' %}
+{% endblock modal %}
+{% block menu %}
+{% include 'front/includes/menu.html' %}
+{% endblock menu %}
+
+<section id="main" class="mt-md-0 mt-5 mb-0">
+    <div class="main-inner">
+         <div class="container">
+                            <div class="item">
+                                <div>
+                                    <h3 class="title">Спасибо за заявку</h3>
+                                    <p>Спасибо, ваша завяка принята. В ближайшее время с вами свяжется наш менеджер.</p>
+
+                                    <a href="{% url 'FrontPage' %}" class="button">Вернуться на главную.</a>
+                                </div>
+
+                            </div>
+                        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+{% block footer %}
+    {% include 'front/includes/footer.html' %}
+{% endblock footer %}

@@ -1,0 +1,40 @@
+{% load static %}
+{% block header %}
+{% include 'front/includes/header.html' %}
+{% endblock header %}
+    <title></title>
+</head>
+<body>
+{% block modal %}
+{% include 'front/includes/modal.html' %}
+{% endblock modal %}
+{% block menu %}
+{% include 'front/includes/menu.html' %}
+{% endblock menu %}
+
+
+<section>
+    <div class="container">
+        <h2>Каталог продукции</h2>
+        <div class="catalog-block-div">
+            {% for category in categories %}
+            {% if category.childs.all %}
+            <a href="{% url 'Catalog-item' category.childs.all.first.pk   %}" class="catalog-block-item">
+                <p>{{category.name}}</p>
+                <img src="/media/{{ category.img }}" alt="">
+            </a>
+              {% else %}
+                      <a href="{% url 'Catalog-item' category.pk   %}" class="catalog-block-item">
+                <p>{{category.name}}</p>
+                <img src="/media/{{ category.img }}" alt="">
+            </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+{% block footer %}
+    {% include 'front/includes/footer.html' %}
+{% endblock footer %}

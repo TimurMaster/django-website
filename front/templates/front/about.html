@@ -1,0 +1,94 @@
+{% load static %}
+{% block header %}
+{% include 'front/includes/header.html' %}
+{% endblock header %}
+    <title></title>
+</head>
+
+<body>
+
+{% block modal %}
+{% include 'front/includes/modal.html' %}
+{% endblock modal %}
+{% block menu %}
+{% include 'front/includes/menu.html' %}
+{% endblock menu %}
+
+<section class="mt-md-0 mt-5">
+    <div class="banner-def">
+        <div class="banner-def-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-12 d-grid">
+                        <h2>О компании</h2>
+
+                        <div class="button" data-toggle="modal" data-target="#cta-modal">Оставить заявку</div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <img src="{% static 'front/img/about/1.png' %}" class="w-100" alt="">
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <?php include "blocks/breadcrumbs-block.php" ?>
+
+        <div class="row mt-4">
+            <div class="col-md-6 col-12">
+                <p> <b>Компания «RENKAZ»</b>  специализируется на оптово-розничной продаже и монтаже инженерного сантехнического оборудования. Широкий ряд комплектующих позволяет произвести комплектацию строительных объектов любого типа «под ключ». 
+                    <br><br> Качество товаров подтверждается сертификатами соответствия и санитарно-эпидемиологическими заключениями. Предоставляется гарантия, поддерживаемая официально авторизованными сервисными центрами.
+                    </p>
+            </div>
+            <div class="col-md-6 col-12">
+                <p>Возможности компании позволяют в сжатые сроки осуществить поставку оборудования даже в самые отдаленные регионы Казахстана (при заказе от 100 тысяч тенге, доставка осуществляется за счет компании). 
+                    <br><br>
+                    В приоритете компании удовлетворенность каждого клиента, независимо от его статуса, будь то представитель большой строительной компании или частное лицо, RENKAZ всегда открыт для плодотворного сотрудничества.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section>
+    <div class="container">
+        <h2>Наши преимущества</h2>
+         {% block preim %}
+        {% include 'front/blocks/preim-block.html' %}
+        {% endblock preim %}
+    </div>
+</section>
+
+
+<section>
+    <div class="container">
+        <div class="clients-div">
+            <p class="title">Наши клиенты</p>
+              {% block clients %}
+            {% include 'front/blocks/clients-block.html' %}
+            {% endblock clients %}
+        </div>
+    </div>
+</section>
+
+
+
+
+<section>
+    <div class="container">
+        <h2>Новости</h2>
+        {% block news %}
+        {% include 'front/blocks/news-block.html' %}
+        {% endblock %}
+    </div>
+</section>
+
+
+{% block footer %}
+    {% include 'front/includes/footer.html' %}
+{% endblock footer %}

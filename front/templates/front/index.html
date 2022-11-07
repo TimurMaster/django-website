@@ -1,0 +1,238 @@
+{% load static %}
+{% block header %}
+{% include 'front/includes/header.html' %}
+{% endblock header %}
+    <title></title>
+</head>
+<body>
+{% block modal %}
+{% include 'front/includes/modal.html' %}
+{% endblock modal %}
+{% block menu %}
+{% include 'front/includes/menu.html' %}
+{% endblock menu %}
+
+<section id="main" class="mt-md-0 mt-5">
+    <div class="main-inner">
+            <div class="swiper-container main-swiper">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="container">
+                            <div class="item">
+                                <div>
+                                    <p class="title">“RENKAZ” -  официальный дилер
+                                        ведущего мирового производителя
+                                        запорно-регулирующей арматуры</p>
+
+                                    <div class="button" data-toggle="modal" data-target="#cta-modal">Оставить заявку</div>
+                                </div>
+                                <img src="{% static 'front/img/main/2.png' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="container">
+                            <div class="item">
+                                <div>
+                                    <h1 class="title">“RENKAZ” -  оборудование для систем водоснабжения, отопления и канализации</h1>
+
+                                    <div class="button" data-toggle="modal" data-target="#cta-modal">Оставить заявку</div>
+                                </div>
+                                <img src="{% static 'front/img/main/1.png' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="pag-div">
+                <div class="swiper-button-prev swiper-button-prev-main"></div>
+                <div class="swiper-button-next swiper-button-next-main"></div>
+            </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<section>
+    <div class="container">
+        <h2>Каталог продукции</h2>
+
+        <div class="catalog-block-div">
+            {% for category in categories %}
+            {% if category.childs.all %}
+            <a href="{% url 'Catalog-item' category.childs.all.first.pk   %}" class="catalog-block-item">
+                <p>{{category.name}}</p>
+                <img src="/media/{{ category.img }}" alt="">
+            </a>
+              {% else %}
+                      <a href="{% url 'Catalog-item' category.pk   %}" class="catalog-block-item">
+                <p>{{category.name}}</p>
+                <img src="/media/{{ category.img }}" alt="">
+            </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="container">
+        <h2>О компании</h2>
+
+        <div class="row">
+            <div class="col-md-7 col-12">
+                <div class="about-gallery">
+                    <div class="swiper-container about-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="{% static 'front/img/about/gal1.jpg' %}" class="about-item" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="{% static 'front/img/about/gal1.jpg' %}" class="about-item" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pag-div">
+                        <div class="swiper-button-prev swiper-button-prev-about"></div>
+                        <div class="swiper-button-next swiper-button-next-about"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-12">
+                <div class="about-div">
+                    <p>Компания «RENKAZ» оказывает полный спектр услуг от предварительной сметы и проекта до монтажа инженерного оборудования, и запуска системы в эксплуатацию. Гарантированное обслуживание оборудования осуществляется авторизованными сервисными центрами в течение всего срока, регламентируемого законодательством Республики Казахстан. Качество товаров подтверждается сертификатами соответствия и санитарно-эпидемиологическими заключениями. </p>
+                    <a href="{% url 'about' %}" class="link">Подробнее о компании</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="container">
+        <h2>Наши преимущества</h2>
+        {% block preim %}
+            {% include 'front/blocks/preim-block.html' %}
+        {% endblock preim %}
+    </div>
+</section>
+
+
+<section id="partners">
+    <div class="container">
+        <div class="clients-div">
+            <p class="title">Более 300 парнетров</p>
+            {% block partners %}
+            {% include 'front/blocks/partners-block.html' %}
+            {% endblock partners %}
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="container">
+        <div class="projects-div">
+            <div class="item">
+                <h2>Проекты</h2>
+            </div>
+            {% for project in projects %}
+            <div class="item overlay">
+              {% for image in project_image %}
+                {% if image.project == project %}
+                      <img src="/media/{{ image.main }}" alt="">
+                     <img src="/media/{{ image.img }}" class="over-img" alt="">
+                {% endif %}
+            {% endfor %}
+                <div class="info">
+                    <p>{{ project.descript }}</p>
+                </div>
+            </div>
+
+            <div class="item static">
+                <div class="info">
+                    <p>{{ project.Text }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'projects' %}" class="link">Все проекты</a>
+        <div class="button m-auto" data-toggle="modal" data-target="#cta-modal">Оставить заявку</div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="container">
+        <div class="clients-div">
+            <p class="title">Наши клиенты</p>
+            {% block clients %}
+            {% include 'front/blocks/clients-block.html' %}
+            {% endblock clients %}
+        </div>
+    </div>
+</section>
+
+
+
+
+<section>
+    <div class="container">
+        <h2>Собираете информацию для руководства?</h2>
+
+        <div class="row position-relative">
+        <div class="info-devider"></div>
+            <div class="col-md-4 col-12">
+                <div class="info-item">
+                    <span>01</span>
+                    <p>Просчитаем ваш проект под ключ, поможем подобрать необходимое оборудование.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="info-item">
+                    <span>02</span>
+                    <p>Проведём презентацию. Исключая любые вопросы со стороны руководства.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="info-item">
+                    <span>03</span>
+                    <p>Поможем защитить бюджеты. Оптимизируем и документально подтвердим заложенный в проект материал</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section>
+    <div class="container">
+        <h2>Новости</h2>
+        {% block news %}
+        {% include 'front/blocks/news-block.html' %}
+        {% endblock %}
+    </div>
+</section>
+
+
+
+
+{% block footer %}
+    {% include 'front/includes/footer.html' %}
+{% endblock footer %}

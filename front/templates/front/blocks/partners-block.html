@@ -1,0 +1,15 @@
+{% block partners %}
+<!-- Swiper -->
+    {% load static %}
+<div class="swiper-container partners-swiper">
+                <div class="swiper-wrapper">
+                    {% for partner in partners %}
+                    <div class="swiper-slide">
+                        <img src="/media/{{ partner.img }}" class="client-item" alt="">
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination swiper-pagination-partners"></div>
+            </div>
+{% endblock partners %}
